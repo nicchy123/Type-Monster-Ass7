@@ -1,9 +1,11 @@
 const histories = document.getElementById("histories");
 
 function addHistory(questionText, timeTaken, errorCount) {
+  console.log(questionText);
+  console.log(timeTaken);
+  console.log(errorCount);
   const newRow = document.createElement("div");
   newRow.classList.add("card");
-
   newRow.innerHTML = `
   <h3>${questionText}</h3>
   <div>
@@ -15,6 +17,7 @@ function addHistory(questionText, timeTaken, errorCount) {
   histories.appendChild(newRow);
 
   let previousTests = JSON.parse(localStorage.getItem("testHistory")) || [];
+  console.log(previousTests);
   previousTests.push({ questionText, timeTaken, errorCount });
   localStorage.setItem("testHistory", JSON.stringify(previousTests));
 
@@ -22,11 +25,13 @@ function addHistory(questionText, timeTaken, errorCount) {
 }
 
 function displayHistory() {
+
   histories.innerHTML = "";
   const previousTests = JSON.parse(localStorage.getItem("testHistory")) || [];
 
   previousTests.forEach((test) => {
     const newRow = document.createElement("div");
+    newRow.innerHTML = ``;
     newRow.classList.add("card");
 
     newRow.innerHTML = `
@@ -36,5 +41,6 @@ function displayHistory() {
   `;
 
     histories.appendChild(newRow);
+  
   });
 }

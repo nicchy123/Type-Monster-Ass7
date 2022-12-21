@@ -8,7 +8,7 @@ const modalBackground = document.getElementById("modal-background");
 // variables
 let userText = "";
 let errorCount = 0;
-let startTime;
+let startTime = 0;
 let questionText = "";
 
 // Load and display question
@@ -22,7 +22,6 @@ fetch("./texts.json")
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
   const newLetter = e.key;
-
   // Handle backspace press
   if (newLetter == "Backspace") {
     userText = userText.slice(0, userText.length - 1);
@@ -63,16 +62,16 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keydown", typeController);
+  document.addEventListener("keydown", typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
-  const timeTaken = (finishTime - startTime) / 1000;
+  const timeTaken = Math.floor((finishTime - startTime) / 1000);
 
   // show result modal
   resultModal.innerHTML = "";
-  resultModal.classList.toggle("hidden");
-  modalBackground.classList.toggle("hidden");
+  resultModal.classList.toggle("block");
+  modalBackground.classList.toggle("block");
   // clear user text
   display.innerHTML = "";
   // make it inactive
@@ -82,11 +81,9 @@ const gameOver = () => {
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
-    <button onclick="closeModal()">Close</button>
+    <button onclick="${closeModal()}">Close</button>
   `;
-
-  addHistory(questionText, timeTaken, errorCount);
-
+addHistory(questionText, timeTaken, errorCount);
   // restart everything
   startTime = null;
   errorCount = 0;
@@ -95,13 +92,13 @@ const gameOver = () => {
 };
 
 const closeModal = () => {
-  modalBackground.classList.toggle("hidden");
+  modalBackground.classList.toggle("block");
   resultModal.classList.toggle("hidden");
 };
 
 const start = () => {
   // If already started, do not start again
-  if (startTime) 
+  if (startTime)
     return;
   ;
 
@@ -119,10 +116,10 @@ const start = () => {
       display.classList.remove("inactive");
 
       clearInterval(startCountdown);
-      startTime = new Date().getTime();
+       startTime = new Date().getTime();
     }
     count--;
-  }, 1000);
+  }, 100);
 };
 
 // START Countdown
@@ -134,7 +131,8 @@ displayHistory();
 // Show typing time spent
 setInterval(() => {
   const currentTime = new Date().getTime();
-  const timeSpent = (currentTime - startTime) / 1000;
+  const timeSpent = Math.floor((currentTime - startTime) / 1000);
+
 
 
   document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
