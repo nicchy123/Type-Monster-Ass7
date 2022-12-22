@@ -20,6 +20,7 @@ body {
 .blog, .home{
   color: whitesmoke;
   cursor: pointer;
+  font-weight: normal;
 }
 .box-container {
   width: 70%;
