@@ -27,9 +27,9 @@
            </p>
         </div>
         <div class="mb-3">
-            <h2 class=" text-center d-inline">(3) Local Storage vs Session Storage</h2>
+            <h2 class=" text-center d-inline">(3) How Event Loop Work</h2>
            <p class="fs-5 mt-2">
-            sessionStorage is similar to localStorage ; the difference is that while data in localStorage doesn't expire, data in sessionStorage is cleared when the page session ends. Whenever a document is loaded in a particular tab in the browser, a unique page session gets created and assigned to that particular tab.
+            JavaScript has a runtime model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.The event loop works by making a request to some internal or external "event provider" (that generally blocks the request until an event has arrived), then calls the relevant event handler ("dispatches the event")
            </p>
         </div>
         <div class="mb-3">
