@@ -71,8 +71,8 @@ const gameOver = () => {
 
   // show result modal
   resultModal.innerHTML = "";
-  resultModal.classList.toggle("block");
-  modalBackground.classList.toggle("block");
+  resultModal.classList.toggle("hidden");
+  modalBackground.classList.toggle("hidden");
   // clear user text
   display.innerHTML = "";
   // make it inactive
@@ -82,7 +82,7 @@ const gameOver = () => {
     <h1>Finished!</h1>
     <p>You took: <span class="bold">${timeTaken}</span> seconds</p>
     <p>You made <span class="bold red">${errorCount}</span> mistakes</p>
-    <button onclick="${closeModal()}">Close</button>
+    <button onclick="closeModal()">Close</button>
   `;
 addHistory(questionText, timeTaken, errorCount);
   // restart everything
@@ -93,10 +93,10 @@ addHistory(questionText, timeTaken, errorCount);
 };
 
 const closeModal = () => {
-  modalBackground.classList.toggle("block");
+  modalBackground.classList.toggle("hidden");
   resultModal.classList.toggle("hidden");
+  console.log('click')
 };
-
 const start = () => {
   // If already started, do not start again
   if (startTime)
