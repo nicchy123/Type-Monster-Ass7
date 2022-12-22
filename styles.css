@@ -10,7 +10,17 @@ body {
   background-position: left top;
   font-family: "Zilla Slab", serif;
 }
-
+.nav{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  gap: 30px;
+  
+}
+.blog, .home{
+  color: whitesmoke;
+  cursor: pointer;
+}
 .box-container {
   width: 70%;
   margin: 0 auto;
